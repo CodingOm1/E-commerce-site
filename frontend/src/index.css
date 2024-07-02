@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ff634700; /* Tomato color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff4500; /* Slightly darker tomato color */
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6347; /* Original tomato color */
+}
+
+@-moz-document url-prefix() {
+  * {
+      scrollbar-width: thin;
+      scrollbar-color: #ff4500 #ff6347;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  
+}
+body {
+  background-color: #fff;
+  min-height: 100vh;
+  font-family: "Outfit", sans-serif;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+.app
+{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 7vw;
+}
+
+@keyframes fadeIn{
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

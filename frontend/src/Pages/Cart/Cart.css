@@ -1,0 +1,120 @@
+.cart {
+  margin-top: 100px;
+}
+.cart-items-title {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  color: grey;
+  font-size: max(1vw, 12px);
+}
+
+.cart-items-item {
+  margin: 10px 0;
+  gap: 5px;
+  color: #000;
+}
+.cart-items-item img {
+  width: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #585858a6;
+}
+
+.cart hr {
+  height: 1px;
+  background-color: #e2e2e2;
+  border: none;
+}
+.cart .cross {
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.cart-bottom {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: max(12vw, 20px);
+}
+.cart-total {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-detail {
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+.cart-total hr {
+  margin: 10px 0;
+}
+.cart-total button {
+  border: none;
+  color: #fff;
+  background-color: tomato;
+  width: max(15vw, 200px);
+  padding: 12px 0;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+.cart-total .CartAdded {
+  border: none;
+  color: #fff;
+  background-color: #6d6d6d;
+  width: max(15vw, 200px);
+  padding: 12px 0;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: 0.2s ease-in-out;
+}
+.cart-total button:hover {
+  background-color: #e2492e;
+}
+.cart-promoCode {
+  flex: 1;
+}
+.cart-promoCode p {
+  color: #555;
+}
+
+.cartPrompinput {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #aeaeaa;
+  border-radius: 4px;
+}
+.cartPrompinput input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+}
+.cartPrompinput button {
+  width: max(10vw, 150px);
+  padding: 12px 5px;
+  background: #000;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+@media (max-width: 750px) {
+  .cart-bottom {
+    flex-direction: column;
+  }
+  .cart-promoCode{
+    justify-content: start;
+  }
+}
