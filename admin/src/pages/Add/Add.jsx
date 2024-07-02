@@ -1,46 +1,53 @@
 import React, { useState } from "react";
 import "./Add.css";
 import { assets } from "../../assets/assets";
-import axios from 'axios'
+import axios from 'axios';
+import { toast } from "react-toastify";
 
-const Add = () => {
-  const url = "http://localhost:4000";
+const Add = ({url}) => {
+  
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    Category: "Salad"
+    category: "Salad"
   });
 
-  const OnChnageHandler = (event) => {
+  const OnChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setData(data=>({ ...data, [name]:value}));
+    setData(data => ({ ...data, [name]: value }));
   };
 
-  const OnSubmitHandler = async (event) =>{
+  const OnSubmitHandler = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", data.name)
-    formData.append("description", data.description)
-    formData.append("price", Number(data.price))
-    formData.append("Category", data.Category)
-    formData.append("image",image)
-    const response = await axios.post(`${url}/api/food/add`, formData)
-    if(response.data.scuccess){
-      console.log("Success");
-      setData({
-        name: "",
-        description: "",
-        price: "",
-        Category: "Salad"
-      })
-      setImage(false)
-    }else{
-      console.log("Error");
+    formData.append("name", data.name);
+    formData.append("description", data.description);
+    formData.append("price", Number(data.price));
+    formData.append("category", data.category);
+    formData.append("image", image);
+    
+    try {
+      const response = await axios.post(`${url}/api/food/add`, formData);
+      if (response.data.success) {
+        console.log("Success");
+        setData({
+          name: "",
+          description: "",
+          price: "",
+          category: "Salad"
+        });
+        setImage(false);
+        toast.success(response.data.message)
+      } else {
+        toast.error(response.data.message)
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
     }
-  }
+  };
 
   return (
     <div className="add">
@@ -64,7 +71,7 @@ const Add = () => {
         <div className="add-product-name flex-col">
           <p>Product Name</p>
           <input
-            onChange={OnChnageHandler}
+            onChange={OnChangeHandler}
             value={data.name}
             type="text"
             name="name"
@@ -72,9 +79,9 @@ const Add = () => {
           />
         </div>
         <div className="add-product-desc flex-col">
-          <p>Food Desription</p>
+          <p>Food Description</p>
           <textarea
-            onChange={OnChnageHandler}
+            onChange={OnChangeHandler}
             value={data.description}
             name="description"
             rows="6"
@@ -85,9 +92,9 @@ const Add = () => {
           <div className="category-add flex-col">
             <p>Product Category</p>
             <select
-              onChange={OnChnageHandler}
-              value={data.Category}
-              name="Category"
+              onChange={OnChangeHandler}
+              value={data.category}
+              name="category"
             >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
@@ -102,7 +109,7 @@ const Add = () => {
           <div className="add-price flex-col">
             <p>Product Price</p>
             <input
-              onChange={OnChnageHandler}
+              onChange={OnChangeHandler}
               value={data.price}
               type="Number"
               name="price"
